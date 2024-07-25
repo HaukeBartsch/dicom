@@ -11,12 +11,12 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/suyashkumar/dicom/pkg/debug"
-	"github.com/suyashkumar/dicom/pkg/vrraw"
+	"github.com/haukebartsch/dicom/pkg/debug"
+	"github.com/haukebartsch/dicom/pkg/vrraw"
 
-	"github.com/suyashkumar/dicom/pkg/dicomio"
-	"github.com/suyashkumar/dicom/pkg/frame"
-	"github.com/suyashkumar/dicom/pkg/tag"
+	"github.com/haukebartsch/dicom/pkg/dicomio"
+	"github.com/haukebartsch/dicom/pkg/frame"
+	"github.com/haukebartsch/dicom/pkg/tag"
 )
 
 var (
@@ -137,9 +137,9 @@ func (r *reader) readValue(t tag.Tag, vr string, vl uint32, isImplicit bool, d *
 	case tag.VRFloat32List, tag.VRFloat64List:
 		return r.readFloat(t, vr, vl)
 	// More details on how we treat Unknown VRs can be found at
-	// https://github.com/suyashkumar/dicom/issues/220
+	// https://github.com/haukebartsch/dicom/issues/220
 	// and
-	// https://github.com/suyashkumar/dicom/issues/231.
+	// https://github.com/haukebartsch/dicom/issues/231.
 	// TODO(suyashkumar): consider replacing UN VRs with SQ earlier on if they
 	// meet this criteria, so users of the Dataset can interact with it
 	// correctly.
