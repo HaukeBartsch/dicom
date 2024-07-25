@@ -4,6 +4,8 @@
 package tag
 
 //go:generate ./generate_tag_definitions.py
+
+// If the following like fails you might need to first: go install golang.org/x/tools/cmd/stringer
 //go:generate stringer -type VRKind
 
 import (
