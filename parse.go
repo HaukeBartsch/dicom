@@ -286,6 +286,7 @@ type parseOptSet struct {
 	skipPixelData                      bool
 	skipProcessingPixelDataValue       bool
 	allowMissingMetaElementGroupLength bool
+	parseTheseTags                     []tag.Tag
 }
 
 func toParseOptSet(opts ...ParseOption) parseOptSet {
@@ -346,5 +347,14 @@ func SkipPixelData() ParseOption {
 func SkipProcessingPixelDataValue() ParseOption {
 	return func(set *parseOptSet) {
 		set.skipProcessingPixelDataValue = true
+	}
+}
+
+// ParseTheseTags will skip all tags not listed in tag_list. If set there is
+// no guarantee that the listed tags are parsed. They also need to exist in
+// the DICOM file.
+func ParseTheseTags(tag_list []tag.Tag) ParseOption {
+	return func(set *parseOptSet) {
+		set.parseTheseTags = tag_list
 	}
 }
